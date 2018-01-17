@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundExecutionDemo", "BackgroundExecutionDemo.csproj", "{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Debug|iPhone.Build.0 = Debug|iPhone
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhone.Build.0 = Release|iPhone
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00A38370-4170-445E-A685-7BDAD8ED00BF}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = BackgroundExecution\BackgroundExecution.csproj
+	EndGlobalSection
+EndGlobal
