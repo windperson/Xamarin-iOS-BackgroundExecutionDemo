@@ -9,61 +9,66 @@ using Foundation;
 
 namespace BackgroundExecution
 {
-	public partial class HomeScreen : UIViewController
-	{
+    public partial class HomeScreen : UIViewController
+    {
 
-		#region Constructors
+        private nint _taskID;
 
-		// The IntPtr and initWithCoder constructors are required for items that need
-		// to be able to be created from a xib rather than from managed code
+        #region Constructors
 
-		public HomeScreen (IntPtr handle) : base (handle)
-		{
-		}
+        // The IntPtr and initWithCoder constructors are required for items that need
+        // to be able to be created from a xib rather than from managed code
 
-		[Export ("initWithCoder:")]
-		public HomeScreen (NSCoder coder) : base (coder)
-		{
-		}
+        public HomeScreen(IntPtr handle) : base(handle)
+        {
+        }
 
-		public HomeScreen () : base ("HomeScreen", null)
-		{
-		}
+        [Export("initWithCoder:")]
+        public HomeScreen(NSCoder coder) : base(coder)
+        {
+        }
 
-		#endregion
+        public HomeScreen() : base("HomeScreen", null)
+        {
+        }
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
+        #endregion
 
-			Title = "Background Execution";
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-			BtnStartLongRunningTask.TouchUpInside += (s, e) => {
-				Task.Factory.StartNew(DoSomething);
-			};
-		}
+            Title = "Background Execution";
 
-		void DoSomething ()
-		{
-			nint taskID = 0;
-			// register our background task
-			taskID = UIApplication.SharedApplication.BeginBackgroundTask(() =>
-			{
-				Console.WriteLine("Running out of time to complete you background task!");
-				UIApplication.SharedApplication.EndBackgroundTask(taskID);
-			});
+            BtnStartLongRunningTask.TouchUpInside += (s, e) =>
+            {
+                Task.Factory.StartNew(DoSomething);
+            };
+        }
 
-			Console.WriteLine ("Starting background task {0}", taskID);
+        private void DoSomething()
+        {
+            // register our background task
+            _taskID = UIApplication.SharedApplication.BeginBackgroundTask(() =>
+            {
 
-			// sleep for five seconds
-			Thread.Sleep (5000);
+                var taskId = _taskID;
+                Console.WriteLine("Running out of time to complete you background task!");
 
-			Console.WriteLine ("Background task {0} completed.", taskID);
+                UIApplication.SharedApplication.EndBackgroundTask(taskId);
+            });
 
-			// mark our background task as complete
-			UIApplication.SharedApplication.EndBackgroundTask (taskID);
-		}
+            Console.WriteLine("Starting background task {0}", _taskID);
 
-	}
+            // sleep for five seconds
+            Thread.Sleep(5000);
+
+            Console.WriteLine("Background task {0} completed.", _taskID);
+
+            // mark our background task as complete
+            UIApplication.SharedApplication.EndBackgroundTask(_taskID);
+        }
+
+    }
 }
 
