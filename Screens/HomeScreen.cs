@@ -12,7 +12,7 @@ namespace BackgroundExecution
     public partial class HomeScreen : UIViewController
     {
 
-        private nint _taskID;
+        
 
         #region Constructors
 
@@ -48,25 +48,30 @@ namespace BackgroundExecution
 
         private void DoSomething()
         {
+            nint taskId = new nint();
             // register our background task
-            _taskID = UIApplication.SharedApplication.BeginBackgroundTask(() =>
+            taskId = UIApplication.SharedApplication.BeginBackgroundTask(() =>
             {
 
-                var taskId = _taskID;
                 Console.WriteLine("Running out of time to complete you background task!");
 
+                // ReSharper disable once AccessToModifiedClosure
                 UIApplication.SharedApplication.EndBackgroundTask(taskId);
             });
 
-            Console.WriteLine("Starting background task {0}", _taskID);
+            Console.WriteLine("Starting background task {0}", taskId);
+
+            Console.WriteLine($"remain time: {UIApplication.SharedApplication.BackgroundTimeRemaining}");
 
             // sleep for five seconds
             Thread.Sleep(5000);
 
-            Console.WriteLine("Background task {0} completed.", _taskID);
+            Console.WriteLine($"remain time: {UIApplication.SharedApplication.BackgroundTimeRemaining}");
+
+            Console.WriteLine("Background task {0} completed.", taskId);
 
             // mark our background task as complete
-            UIApplication.SharedApplication.EndBackgroundTask(_taskID);
+            UIApplication.SharedApplication.EndBackgroundTask(taskId);
         }
 
     }
